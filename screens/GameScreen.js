@@ -20,9 +20,11 @@ const GameScreen = props => {
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, props.userChoice)
   );
+
   const [rounds, setRounds] = useState(0);
-  const currentLow = useRef(10);
+  const currentLow = useRef(1);
   const currentHigh = useRef(100);
+
   const { userChoice, onGameOver } = props;
 
   useEffect(() => {
