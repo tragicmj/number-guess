@@ -5,6 +5,7 @@ import {
   Text,
   Alert,
   ScrollView,
+  Dimensions,
   FlatList
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginVertical: 15,
+    marginTop: Dimensions.get("window").height > 600 ? 13 : 5,
     width: 300,
     maxWidth: "80%"
   },
