@@ -81,6 +81,13 @@ const GameScreen = props => {
       ...curPastGuesses
     ]);
   };
+
+  // let listContainerStyle=styles.listContainer;
+  //remove the text under braces by listContainerStyle
+  // if(Dimensions.get('window').width<350){
+  //   listContainerStyle=styles.listContainerBig;
+  // }
+
   return (
     <View style={styles.screen}>
       <Text style={(styles.heading, DefaultStyles.bodyText)}>
@@ -130,8 +137,12 @@ const styles = StyleSheet.create({
     maxWidth: "80%"
   },
   listContainer: {
-    width: "100%",
+    width: Dimensions.get("window").width > 350 ? "100%" : "95%",
     flex: 1
+  },
+  listContainerBig: {
+    flex: 1,
+    width: "80%"
   },
   list: {
     alignItems: "center",
