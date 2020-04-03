@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 10
+    padding: 15
   },
   imageContainer: {
     // borderRadius: 125,

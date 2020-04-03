@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,8 +9,7 @@ import {
   Alert,
   Dimensions,
   ScrollView,
-  KeyboardAvoidingView,
-  KeyboardAvoidingViewBase
+  KeyboardAvoidingView
 } from "react-native";
 
 import Card from "../components/Card";
@@ -26,6 +25,9 @@ const StartGameScreen = props => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState("");
+  const [buttonWidth, setButtonWidth] = useState(
+    Dimensions.get("window").width / 4
+  );
 
   const numberInputHandler = inputText => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
@@ -35,6 +37,16 @@ const StartGameScreen = props => {
     setEnteredValue("");
     setConfirmed(false);
   };
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setButtonWidth(Dimensions.get("window").width / 4);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
 
   const confirmInputHandler = () => {
     const choosenNumber = parseInt(enteredValue);
@@ -92,14 +104,14 @@ const StartGameScreen = props => {
                 style={styles.input}
               />
               <View style={styles.buttonWrap}>
-                <View style={styles.button}>
+                <View style={{ width: buttonWidth }}>
                   <Button
                     color={Colors.accent}
                     title="Reset"
                     onPress={resetInputHandler}
                   />
                 </View>
-                <View style={styles.button}>
+                <View style={{ width: buttonWidth }}>
                   <Button
                     title="Confirm"
                     color={Colors.primary}
@@ -155,7 +167,7 @@ const styles = StyleSheet.create({
   },
   button: {
     // width: 80
-    width: Dimensions.get("window").width / 4
+    // width: Dimensions.get("window").width / 4
   }
 });
 
